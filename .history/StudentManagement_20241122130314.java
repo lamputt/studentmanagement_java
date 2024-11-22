@@ -33,85 +33,85 @@ public class StudentManagement {
             System.out.println("Student with ID " + studentId + " does not exist.");
         }
     }
-    // public void sortStudentsByScore() {
-    //     int n = listStudent.size();
-    //     for (int i = 0; i < n - 1; i++) {
-    //         for (int j = 0; j < n - i - 1; j++) {
-    //             if (listStudent.get(j).getScore() < listStudent.get(j + 1).getScore()) {
-    //                 Student index = listStudent.get(j);
-    //                 listStudent.set(j, listStudent.get(j + 1));
-    //                 listStudent.set(j + 1, index);
-    //             }
-    //         }
-    //     }
-    //     System.out.println("Students sorted by score from highest to lowest.");
-    //     for (Student student : listStudent) {
-    //         System.out.println("Name student is : " + student.getFullname() + ", ID is : " + student.getId() 
-    //                 + ", Score is : " + student.getScore() + ", Rank is : " + student.getRank());
-    //     }
-    // }
-    
     public void sortStudentsByScore() {
-        // Gọi hàm mergeSort để sắp xếp danh sách
-        listStudent = mergeSort(listStudent);
-    
-        // In danh sách sinh viên sau khi sắp xếp
+        int n = listStudent.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (listStudent.get(j).getScore() < listStudent.get(j + 1).getScore()) {
+                    Student index = listStudent.get(j);
+                    listStudent.set(j, listStudent.get(j + 1));
+                    listStudent.set(j + 1, index);
+                }
+            }
+        }
         System.out.println("Students sorted by score from highest to lowest.");
         for (Student student : listStudent) {
-            System.out.println("Name student is : " + student.getFullname() + ", ID is : " + student.getId()
+            System.out.println("Name student is : " + student.getFullname() + ", ID is : " + student.getId() 
                     + ", Score is : " + student.getScore() + ", Rank is : " + student.getRank());
         }
     }
     
-    // Hàm chính của thuật toán Merge Sort
-    private ArrayList<Student> mergeSort(ArrayList<Student> students) {
-        if (students.size() <= 1) {
-            return students; // Nếu danh sách chỉ có 1 phần tử hoặc rỗng thì trả về luôn
-        }
+    // public void sortStudentsByScore() {
+    //     // Gọi hàm mergeSort để sắp xếp danh sách
+    //     listStudent = mergeSort(listStudent);
     
-        // Chia đôi danh sách
-        int mid = students.size() / 2;
-        ArrayList<Student> left = new ArrayList<>(students.subList(0, mid));
-        ArrayList<Student> right = new ArrayList<>(students.subList(mid, students.size()));
+    //     // In danh sách sinh viên sau khi sắp xếp
+    //     System.out.println("Students sorted by score from highest to lowest.");
+    //     for (Student student : listStudent) {
+    //         System.out.println("Name student is : " + student.getFullname() + ", ID is : " + student.getId()
+    //                 + ", Score is : " + student.getScore() + ", Rank is : " + student.getRank());
+    //     }
+    // }
     
-        // Đệ quy để sắp xếp từng nửa
-        left = mergeSort(left);
-        right = mergeSort(right);
+    // // Hàm chính của thuật toán Merge Sort
+    // private ArrayList<Student> mergeSort(ArrayList<Student> students) {
+    //     if (students.size() <= 1) {
+    //         return students; // Nếu danh sách chỉ có 1 phần tử hoặc rỗng thì trả về luôn
+    //     }
     
-        // Gộp hai danh sách con đã sắp xếp
-        return merge(left, right);
-    }
+    //     // Chia đôi danh sách
+    //     int mid = students.size() / 2;
+    //     ArrayList<Student> left = new ArrayList<>(students.subList(0, mid));
+    //     ArrayList<Student> right = new ArrayList<>(students.subList(mid, students.size()));
     
-    // Hàm merge để gộp hai danh sách đã sắp xếp
-    private ArrayList<Student> merge(ArrayList<Student> left, ArrayList<Student> right) {
-        ArrayList<Student> merged = new ArrayList<>();
-        int i = 0, j = 0;
+    //     // Đệ quy để sắp xếp từng nửa
+    //     left = mergeSort(left);
+    //     right = mergeSort(right);
     
-        // So sánh từng phần tử của hai danh sách
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i).getScore() >= right.get(j).getScore()) { // Sắp xếp từ cao xuống thấp
-                merged.add(left.get(i));
-                i++;
-            } else {
-                merged.add(right.get(j));
-                j++;
-            }
-        }
+    //     // Gộp hai danh sách con đã sắp xếp
+    //     return merge(left, right);
+    // }
     
-        // Thêm các phần tử còn lại của danh sách bên trái
-        while (i < left.size()) {
-            merged.add(left.get(i));
-            i++;
-        }
+    // // Hàm merge để gộp hai danh sách đã sắp xếp
+    // private ArrayList<Student> merge(ArrayList<Student> left, ArrayList<Student> right) {
+    //     ArrayList<Student> merged = new ArrayList<>();
+    //     int i = 0, j = 0;
     
-        // Thêm các phần tử còn lại của danh sách bên phải
-        while (j < right.size()) {
-            merged.add(right.get(j));
-            j++;
-        }
+    //     // So sánh từng phần tử của hai danh sách
+    //     while (i < left.size() && j < right.size()) {
+    //         if (left.get(i).getScore() >= right.get(j).getScore()) { // Sắp xếp từ cao xuống thấp
+    //             merged.add(left.get(i));
+    //             i++;
+    //         } else {
+    //             merged.add(right.get(j));
+    //             j++;
+    //         }
+    //     }
     
-        return merged;
-    }
+    //     // Thêm các phần tử còn lại của danh sách bên trái
+    //     while (i < left.size()) {
+    //         merged.add(left.get(i));
+    //         i++;
+    //     }
+    
+    //     // Thêm các phần tử còn lại của danh sách bên phải
+    //     while (j < right.size()) {
+    //         merged.add(right.get(j));
+    //         j++;
+    //     }
+    
+    //     return merged;
+    // }
 
 
 
